@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Image from "next/image"; 
+import Image from "next/image";
 import {
   Box,
   Heading,
@@ -61,6 +61,17 @@ export default function RecipePage() {
       };
 
       setRecipeData(fakeRecipeData);
+
+      // Reinitialize the Instacart widget after the recipe data is loaded
+      if (window.instacart) {
+        window.instacart.widgets.init();
+      } else {
+        const instacartScript = document.createElement("script");
+        instacartScript.src = "https://widgets.instacart.com/widget-bundle-v2.js";
+        instacartScript.async = true;
+        instacartScript.onload = () => window.instacart.widgets.init();
+        document.body.appendChild(instacartScript);
+      }
     }, 1500);
   }, []);
 
