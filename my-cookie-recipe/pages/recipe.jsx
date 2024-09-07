@@ -2,81 +2,110 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
+import {
+  Box,
+  Heading,
+  Text,
+  Image,
+  OrderedList,
+  ListItem,
+  Flex,
+  VStack,
+  HStack,
+  Divider,
+  SimpleGrid,
+  Badge,
+} from "@chakra-ui/react";
 
-export default function Home() {
+export default function RecipePage() {
   const [recipeData, setRecipeData] = useState(null);
 
-  // Fake API call using useEffect
+  // Simulating an API call to get the recipe data
   useEffect(() => {
-    // Simulate API call with setTimeout
     setTimeout(() => {
       const fakeRecipeData = {
-        name: "Pumpkin Spice Latte",
-        image: "https://example.com/pumpkinspicelatte.jpg",
-        description: "A warm, cozy pumpkin spice latte made with real pumpkin puree and a hint of cinnamon.",
+        name: "Mom's World Famous Banana Bread",
+        image: "https://example.com/bananabread.jpg",
+        description: "This classic banana bread recipe comes from my mom -- the walnuts add a nice texture and flavor to the banana bread.",
+        recipeCategory: "Dessert",
+        recipeCuisine: "American",
+        cookTime: "PT1H", // 1 hour
+        prepTime: "PT15M", // 15 minutes
+        totalTime: "PT1H15M", // 1 hour 15 minutes
+        recipeYield: "1 loaf",
         ingredients: [
-          "2 cups milk (dairy or non-dairy)",
-          "2 tbsp pumpkin puree",
-          "1 tbsp sugar",
-          "1/2 tsp pumpkin pie spice",
-          "1/2 tsp vanilla extract",
-          "1/4 cup brewed espresso or strong coffee",
-          "Whipped cream and cinnamon for topping"
+          "3 or 4 ripe bananas, smashed",
+          "1 egg",
+          "3/4 cup of sugar",
+          "1/2 cup of chopped walnuts",
+          "1 1/2 cups of all-purpose flour",
+          "1 teaspoon of baking soda",
+          "Pinch of salt",
         ],
-        instructions:
-          "In a small saucepan, heat the milk, pumpkin puree, and sugar over medium heat until hot but not boiling. Stir in the pumpkin pie spice, vanilla extract, and espresso. Pour into a mug, top with whipped cream and a sprinkle of cinnamon, and enjoy your cozy pumpkin spice latte!",
+        instructions: [
+          "Preheat the oven to 350°F (175°C).",
+          "In a bowl, mix the smashed bananas and sugar. Add the egg and mix well.",
+          "Sift the flour, baking soda, and salt together. Slowly fold into the banana mixture.",
+          "Add walnuts and pour the batter into a greased loaf pan.",
+          "Bake for 60 minutes or until a toothpick inserted into the center comes out clean.",
+        ],
         nutrition: {
-          calories: "180 calories",
-          fatContent: "6 grams fat"
+          calories: "240 kcal",
+          fatContent: "9g",
+          carbohydrateContent: "34g",
+          proteinContent: "4g",
+          fiberContent: "2g",
+          sugarContent: "18g",
         },
-        prepTime: "PT5M",
-        cookTime: "PT5M",
-        yield: "1 serving"
+        suitableForDiet: ["LowFatDiet"],
       };
 
-      setRecipeData(fakeRecipeData); // Simulate the API response
-    }, 1500); // Simulate a delay of 1.5 seconds
+      setRecipeData(fakeRecipeData);
+    }, 1500); // Simulate 1.5 second delay
   }, []);
 
   return (
     <>
       <Head>
-        <title>Pumpkin Spice Latte</title>
-
-        {/* Structured data for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Recipe",
-              name: "Pumpkin Spice Latte",
-              image: "https://example.com/pumpkinspicelatte.jpg",
-              description: "A warm, cozy pumpkin spice latte made with real pumpkin puree and a hint of cinnamon.",
-              cookingMethod: "Stovetop",
-              recipeIngredient: [
-                "2 cups milk (dairy or non-dairy)",
-                "2 tbsp pumpkin puree",
-                "1 tbsp sugar",
-                "1/2 tsp pumpkin pie spice",
-                "1/2 tsp vanilla extract",
-                "1/4 cup brewed espresso or strong coffee",
-                "Whipped cream and cinnamon for topping"
-              ],
-              recipeInstructions:
-                "In a small saucepan, heat the milk, pumpkin puree, and sugar over medium heat until hot but not boiling. Stir in the pumpkin pie spice, vanilla extract, and espresso. Pour into a mug, top with whipped cream and a sprinkle of cinnamon, and enjoy your cozy pumpkin spice latte!",
-              nutrition: {
-                "@type": "NutritionInformation",
-                calories: "180 calories",
-                fatContent: "6 grams fat"
-              },
-              prepTime: "PT5M",
-              cookTime: "PT5M",
-              recipeYield: "1 serving",
-              suitableForDiet: "https://schema.org/LowSugarDiet"
-            })
-          }}
-        />
+        <title>Mom's World Famous Banana Bread</title>
+        {recipeData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Recipe",
+                name: recipeData.name,
+                image: recipeData.image,
+                description: recipeData.description,
+                recipeCategory: recipeData.recipeCategory,
+                recipeCuisine: recipeData.recipeCuisine,
+                prepTime: recipeData.prepTime,
+                cookTime: recipeData.cookTime,
+                totalTime: recipeData.totalTime,
+                recipeYield: recipeData.recipeYield,
+                nutrition: {
+                  "@type": "NutritionInformation",
+                  calories: recipeData.nutrition.calories,
+                  fatContent: recipeData.nutrition.fatContent,
+                  carbohydrateContent: recipeData.nutrition.carbohydrateContent,
+                  proteinContent: recipeData.nutrition.proteinContent,
+                  fiberContent: recipeData.nutrition.fiberContent,
+                  sugarContent: recipeData.nutrition.sugarContent,
+                },
+                recipeIngredient: recipeData.ingredients,
+                recipeInstructions: recipeData.instructions.map((step) => ({
+                  "@type": "HowToStep",
+                  text: step,
+                })),
+                suitableForDiet: recipeData.suitableForDiet.map((diet) => ({
+                  "@type": "RestrictedDiet",
+                  name: diet,
+                })),
+              }),
+            }}
+          />
+        )}
       </Head>
 
       <main style={{ margin: "5%" }}>
@@ -84,88 +113,98 @@ export default function Home() {
           <p>Loading recipe...</p>
         ) : (
           <>
-            <h1 style={{ textAlign: "center" }}>{recipeData.name}</h1>
-            <p style={{ textAlign: "center" }}>{recipeData.description}</p>
-            <img
-              src={recipeData.image}
-              alt={recipeData.name}
-              style={{
-                display: "block",
-                margin: "20px auto",
-                maxWidth: "300px",
-                borderRadius: "10px"
-              }}
+            <Flex direction="column" align="center">
+              <Heading>{recipeData.name}</Heading>
+              <Text>{recipeData.description}</Text>
+              <Image
+                src={recipeData.image}
+                alt={recipeData.name}
+                borderRadius="lg"
+                my={4}
+              />
+
+              <HStack spacing={8} my={4}>
+                <Text>
+                  <strong>Prep Time:</strong> {recipeData.prepTime}
+                </Text>
+                <Text>
+                  <strong>Cook Time:</strong> {recipeData.cookTime}
+                </Text>
+                <Text>
+                  <strong>Total Time:</strong> {recipeData.totalTime}
+                </Text>
+                <Text>
+                  <strong>Yield:</strong> {recipeData.recipeYield}
+                </Text>
+              </HStack>
+
+              <Divider my={6} />
+
+              <VStack align="flex-start" width="100%">
+                <Heading size="md">Ingredients</Heading>
+                <OrderedList>
+                  {recipeData.ingredients.map((ingredient, idx) => (
+                    <ListItem key={idx}>{ingredient}</ListItem>
+                  ))}
+                </OrderedList>
+              </VStack>
+
+              <Divider my={6} />
+
+              <VStack align="flex-start" width="100%">
+                <Heading size="md">Instructions</Heading>
+                <OrderedList>
+                  {recipeData.instructions.map((instruction, idx) => (
+                    <ListItem key={idx}>{instruction}</ListItem>
+                  ))}
+                </OrderedList>
+              </VStack>
+
+              <Divider my={6} />
+
+              <VStack align="flex-start" width="100%">
+                <Heading size="md">Nutrition Facts</Heading>
+                <SimpleGrid columns={2} spacing={4}>
+                  <Text>Calories: {recipeData.nutrition.calories}</Text>
+                  <Text>Fat: {recipeData.nutrition.fatContent}</Text>
+                  <Text>Carbohydrates: {recipeData.nutrition.carbohydrateContent}</Text>
+                  <Text>Protein: {recipeData.nutrition.proteinContent}</Text>
+                  <Text>Fiber: {recipeData.nutrition.fiberContent}</Text>
+                  <Text>Sugar: {recipeData.nutrition.sugarContent}</Text>
+                </SimpleGrid>
+              </VStack>
+
+              <Divider my={6} />
+              <VStack align="flex-start" width="100%">
+                <Heading size="md">Suitable for Diets</Heading>
+                <HStack>
+                  {recipeData.suitableForDiet.map((diet, idx) => (
+                    <Badge key={idx}>{diet}</Badge>
+                  ))}
+                </HStack>
+              </VStack>
+            </Flex>
+
+            <hr />
+
+            {/* Instacart widget */}
+            <h2>Shop Ingredients</h2>
+            <div
+              id="shop-with-instacart-v1"
+              data-affiliate_id="5018"
+              data-source_origin="affiliate_hub"
+              data-affiliate_platform="recipe_widget"
+            ></div>
+
+            {/* Load Instacart widget script */}
+            <Script
+              id="instacart-widget"
+              strategy="afterInteractive"
+              src="https://widgets.instacart.com/widget-bundle-v2.js"
+              async
             />
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                margin: "20px 0"
-              }}
-            >
-              <div>
-                <strong>Prep Time:</strong> {recipeData.prepTime}
-              </div>
-              <div>
-                <strong>Cook Time:</strong> {recipeData.cookTime}
-              </div>
-              <div>
-                <strong>Total Time:</strong> {recipeData.prepTime + recipeData.cookTime}
-              </div>
-              <div>
-                <strong>Yield:</strong> {recipeData.yield}
-              </div>
-            </div>
-
-            <hr />
-
-            <h2>Ingredients</h2>
-            <ol style={{ paddingLeft: "20px" }}>
-              {recipeData.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ol>
-
-            <hr />
-
-            <h2>Instructions</h2>
-            <p>{recipeData.instructions}</p>
-
-            <hr />
-
-            <h2>Nutrition Facts</h2>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                margin: "20px 0"
-              }}
-            >
-              <div>Calories: {recipeData.nutrition.calories}</div>
-              <div>Fat: {recipeData.nutrition.fatContent}</div>
-            </div>
           </>
         )}
-
-        <hr />
-
-        {/* Instacart widget */}
-        <h2>Shop Ingredients</h2>
-        <div
-          id="shop-with-instacart-v1"
-          data-affiliate_id="5018"
-          data-source_origin="affiliate_hub"
-          data-affiliate_platform="recipe_widget"
-        ></div>
-
-        {/* Load Instacart widget script */}
-        <Script
-          id="instacart-widget"
-          strategy="afterInteractive"
-          src="https://widgets.instacart.com/widget-bundle-v2.js"
-          async
-        />
       </main>
     </>
   );
