@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
@@ -25,7 +24,7 @@ export default function RecipePage() {
     // Simulate API call to load recipe data
     setTimeout(() => {
       const fakeRecipeData = {
-        name: "Mom&#39;s World Famous Banana Bread",
+        name: "Mom's World Famous Banana Bread",
         image: "https://example.com/bananabread.jpg",
         description: "This classic banana bread recipe comes from my mom.",
         recipeCategory: "Dessert",
@@ -63,13 +62,6 @@ export default function RecipePage() {
 
       setRecipeData(fakeRecipeData);
     }, 1500);
-
-    // Manually initialize Instacart script when DOM is fully interactive
-    const instacartScript = document.createElement("script");
-    instacartScript.src = "https://widgets.instacart.com/widget-bundle-v2.js";
-    instacartScript.async = true;
-    instacartScript.dataset.source_origin = "affiliate_hub";
-    document.body.appendChild(instacartScript);
   }, []);
 
   return (
@@ -129,8 +121,8 @@ export default function RecipePage() {
               <Image
                 src={recipeData.image}
                 alt={recipeData.name}
-                width={300} // Set width
-                height={300} // Set height
+                width={300}
+                height={300}
                 style={{
                   display: "block",
                   margin: "20px auto",
@@ -200,6 +192,13 @@ export default function RecipePage() {
             </Flex>
           </>
         )}
+
+        <Script
+          id="instacart-widget"
+          strategy="afterInteractive"
+          src="https://widgets.instacart.com/widget-bundle-v2.js"
+          async
+        />
       </main>
     </>
   );
