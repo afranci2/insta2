@@ -23,7 +23,7 @@ export default function RecipePage() {
     // Simulate API call to load recipe data
     setTimeout(() => {
       const fakeRecipeData = {
-        name: "Mom's World Famous Banana Bread",
+        name: "Mom&#39;s World Famous Banana Bread",
         image: "https://example.com/bananabread.jpg",
         description: "This classic banana bread recipe comes from my mom.",
         recipeCategory: "Dessert",
