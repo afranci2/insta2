@@ -11,28 +11,27 @@ export default function Home() {
     // Simulate API call with setTimeout
     setTimeout(() => {
       const fakeRecipeData = {
-        name: "Blueberry Muffins",
-        image: "https://example.com/blueberrymuffins.jpg",
-        description: "These blueberry muffins are light, fluffy, and filled with fresh blueberries.",
+        name: "Pumpkin Spice Latte",
+        image: "https://example.com/pumpkinspicelatte.jpg",
+        description: "A warm, cozy pumpkin spice latte made with real pumpkin puree and a hint of cinnamon.",
         ingredients: [
-          "1 1/2 cups all-purpose flour",
-          "1/2 cup sugar",
-          "2 tsp baking powder",
-          "1/2 tsp salt",
-          "1/2 cup milk",
-          "1/4 cup vegetable oil",
-          "1 egg",
-          "1 cup fresh blueberries"
+          "2 cups milk (dairy or non-dairy)",
+          "2 tbsp pumpkin puree",
+          "1 tbsp sugar",
+          "1/2 tsp pumpkin pie spice",
+          "1/2 tsp vanilla extract",
+          "1/4 cup brewed espresso or strong coffee",
+          "Whipped cream and cinnamon for topping"
         ],
         instructions:
-          "Preheat the oven to 400°F (200°C). In a large bowl, whisk together the flour, sugar, baking powder, and salt. In another bowl, combine the milk, vegetable oil, and egg. Stir the wet ingredients into the dry ingredients until just combined. Fold in the blueberries. Spoon the batter into greased muffin cups, filling each cup about 2/3 full. Bake for 20 minutes, or until a toothpick inserted into the center comes out clean.",
+          "In a small saucepan, heat the milk, pumpkin puree, and sugar over medium heat until hot but not boiling. Stir in the pumpkin pie spice, vanilla extract, and espresso. Pour into a mug, top with whipped cream and a sprinkle of cinnamon, and enjoy your cozy pumpkin spice latte!",
         nutrition: {
           calories: "180 calories",
-          fatContent: "8 grams fat"
+          fatContent: "6 grams fat"
         },
-        prepTime: "PT10M",
-        cookTime: "PT20M",
-        yield: "12 muffins"
+        prepTime: "PT5M",
+        cookTime: "PT5M",
+        yield: "1 serving"
       };
 
       setRecipeData(fakeRecipeData); // Simulate the API response
@@ -42,7 +41,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Blueberry Muffins</title>
+        <title>Pumpkin Spice Latte</title>
 
         {/* Structured data for SEO */}
         <script
@@ -51,30 +50,29 @@ export default function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Recipe",
-              name: "Blueberry Muffins",
-              image: "https://example.com/blueberrymuffins.jpg",
-              description: "These blueberry muffins are light, fluffy, and filled with fresh blueberries.",
-              cookingMethod: "Bake",
+              name: "Pumpkin Spice Latte",
+              image: "https://example.com/pumpkinspicelatte.jpg",
+              description: "A warm, cozy pumpkin spice latte made with real pumpkin puree and a hint of cinnamon.",
+              cookingMethod: "Stovetop",
               recipeIngredient: [
-                "1 1/2 cups all-purpose flour",
-                "1/2 cup sugar",
-                "2 tsp baking powder",
-                "1/2 tsp salt",
-                "1/2 cup milk",
-                "1/4 cup vegetable oil",
-                "1 egg",
-                "1 cup fresh blueberries"
+                "2 cups milk (dairy or non-dairy)",
+                "2 tbsp pumpkin puree",
+                "1 tbsp sugar",
+                "1/2 tsp pumpkin pie spice",
+                "1/2 tsp vanilla extract",
+                "1/4 cup brewed espresso or strong coffee",
+                "Whipped cream and cinnamon for topping"
               ],
               recipeInstructions:
-                "Preheat the oven to 400°F (200°C). In a large bowl, whisk together the flour, sugar, baking powder, and salt. In another bowl, combine the milk, vegetable oil, and egg. Stir the wet ingredients into the dry ingredients until just combined. Fold in the blueberries. Spoon the batter into greased muffin cups, filling each cup about 2/3 full. Bake for 20 minutes, or until a toothpick inserted into the center comes out clean.",
+                "In a small saucepan, heat the milk, pumpkin puree, and sugar over medium heat until hot but not boiling. Stir in the pumpkin pie spice, vanilla extract, and espresso. Pour into a mug, top with whipped cream and a sprinkle of cinnamon, and enjoy your cozy pumpkin spice latte!",
               nutrition: {
                 "@type": "NutritionInformation",
                 calories: "180 calories",
-                fatContent: "8 grams fat"
+                fatContent: "6 grams fat"
               },
-              prepTime: "PT10M",
-              cookTime: "PT20M",
-              recipeYield: "12 muffins",
+              prepTime: "PT5M",
+              cookTime: "PT5M",
+              recipeYield: "1 serving",
               suitableForDiet: "https://schema.org/LowSugarDiet"
             })
           }}

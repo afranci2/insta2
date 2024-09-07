@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Blueberry Muffins</title>
+        <title>Classic Chocolate Chip Cookies</title>
 
         {/* Structured data for SEO */}
         <script
@@ -15,30 +15,31 @@ export default function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Recipe",
-              name: "Blueberry Muffins",
-              image: "https://example.com/blueberrymuffins.jpg",
-              description: "These blueberry muffins are light, fluffy, and filled with fresh blueberries.",
+              name: "Classic Chocolate Chip Cookies",
+              image: "https://example.com/chocolatechipcookies.jpg",
+              description: "These classic chocolate chip cookies are crispy on the outside and chewy on the inside.",
               cookingMethod: "Bake",
               recipeIngredient: [
-                "1 1/2 cups all-purpose flour",
-                "1/2 cup sugar",
-                "2 tsp baking powder",
+                "1 cup butter, softened",
+                "1 cup white sugar",
+                "1 cup packed brown sugar",
+                "2 eggs",
+                "1 tsp vanilla extract",
+                "2 cups all-purpose flour",
+                "1 tsp baking soda",
                 "1/2 tsp salt",
-                "1/2 cup milk",
-                "1/4 cup vegetable oil",
-                "1 egg",
-                "1 cup fresh blueberries"
+                "2 cups semisweet chocolate chips"
               ],
               recipeInstructions:
-                "Preheat the oven to 400°F (200°C). In a large bowl, whisk together the flour, sugar, baking powder, and salt. In another bowl, combine the milk, vegetable oil, and egg. Stir the wet ingredients into the dry ingredients until just combined. Fold in the blueberries. Spoon the batter into greased muffin cups, filling each cup about 2/3 full. Bake for 20 minutes, or until a toothpick inserted into the center comes out clean.",
+                "Preheat the oven to 350°F (175°C). In a large bowl, cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve the baking soda in hot water, and add to the batter along with salt. Stir in flour and chocolate chips. Drop by large spoonfuls onto ungreased baking sheets. Bake for about 10 minutes, or until edges are nicely browned.",
               nutrition: {
                 "@type": "NutritionInformation",
-                calories: "180 calories",
-                fatContent: "8 grams fat"
+                calories: "300 calories",
+                fatContent: "15 grams fat"
               },
-              prepTime: "PT10M",
-              cookTime: "PT20M",
-              recipeYield: "12 muffins",
+              prepTime: "PT20M",
+              cookTime: "PT10M",
+              recipeYield: "24 cookies",
               suitableForDiet: "https://schema.org/LowSugarDiet"
             })
           }}
@@ -46,13 +47,13 @@ export default function Home() {
       </Head>
 
       <main style={{ margin: "5%" }}>
-        <h1 style={{ textAlign: "center" }}>Blueberry Muffins</h1>
+        <h1 style={{ textAlign: "center" }}>Classic Chocolate Chip Cookies</h1>
         <p style={{ textAlign: "center" }}>
-          These blueberry muffins are light, fluffy, and filled with fresh blueberries.
+          These classic chocolate chip cookies are crispy on the outside and chewy on the inside.
         </p>
         <img
-          src="https://example.com/blueberrymuffins.jpg"
-          alt="Blueberry Muffins"
+          src="https://example.com/chocolatechipcookies.jpg"
+          alt="Classic Chocolate Chip Cookies"
           style={{
             display: "block",
             margin: "20px auto",
@@ -69,16 +70,16 @@ export default function Home() {
           }}
         >
           <div>
-            <strong>Prep Time:</strong> PT10M
+            <strong>Prep Time:</strong> PT20M
           </div>
           <div>
-            <strong>Cook Time:</strong> PT20M
+            <strong>Cook Time:</strong> PT10M
           </div>
           <div>
             <strong>Total Time:</strong> PT30M
           </div>
           <div>
-            <strong>Yield:</strong> 12 muffins
+            <strong>Yield:</strong> 24 cookies
           </div>
         </div>
 
@@ -86,21 +87,25 @@ export default function Home() {
 
         <h2>Ingredients</h2>
         <ol style={{ paddingLeft: "20px" }}>
-          <li>1 1/2 cups all-purpose flour</li>
-          <li>1/2 cup sugar</li>
-          <li>2 tsp baking powder</li>
+          <li>1 cup butter, softened</li>
+          <li>1 cup white sugar</li>
+          <li>1 cup packed brown sugar</li>
+          <li>2 eggs</li>
+          <li>1 tsp vanilla extract</li>
+          <li>2 cups all-purpose flour</li>
+          <li>1 tsp baking soda</li>
           <li>1/2 tsp salt</li>
-          <li>1/2 cup milk</li>
-          <li>1/4 cup vegetable oil</li>
-          <li>1 egg</li>
-          <li>1 cup fresh blueberries</li>
+          <li>2 cups semisweet chocolate chips</li>
         </ol>
 
         <hr />
 
         <h2>Instructions</h2>
         <p>
-          Preheat the oven to 400°F (200°C). In a large bowl, whisk together the flour, sugar, baking powder, and salt. In another bowl, combine the milk, vegetable oil, and egg. Stir the wet ingredients into the dry ingredients until just combined. Fold in the blueberries. Spoon the batter into greased muffin cups, filling each cup about 2/3 full. Bake for 20 minutes, or until a toothpick inserted into the center comes out clean.
+          Preheat the oven to 350°F (175°C). In a large bowl, cream together the butter, white sugar, and brown sugar until
+          smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve the baking soda in hot water, and add to
+          the batter along with salt. Stir in flour and chocolate chips. Drop by large spoonfuls onto ungreased baking sheets.
+          Bake for about 10 minutes, or until edges are nicely browned.
         </p>
 
         <hr />
@@ -113,8 +118,8 @@ export default function Home() {
             margin: "20px 0"
           }}
         >
-          <div>Calories: 180 calories</div>
-          <div>Fat: 8 grams fat</div>
+          <div>Calories: 300 calories</div>
+          <div>Fat: 15 grams fat</div>
         </div>
 
         <hr />
