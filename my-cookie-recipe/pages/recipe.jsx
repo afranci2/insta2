@@ -52,6 +52,17 @@ export default function Home() {
       };
 
       setRecipeData(fakeRecipeData);
+
+      // Reinitialize the Instacart widget after the recipe data is loaded
+      if (window.instacart) {
+        window.instacart.widgets.init();
+      } else {
+        const instacartScript = document.createElement("script");
+        instacartScript.src = "https://widgets.instacart.com/widget-bundle-v2.js";
+        instacartScript.async = true;
+        instacartScript.onload = () => window.instacart.widgets.init();
+        document.body.appendChild(instacartScript);
+      }
     }, 1500); // Simulate a delay of 1.5 seconds for the fake API call
   }, []);
 
