@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import {
@@ -17,55 +16,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-export default function Home() {
-  const [recipeData, setRecipeData] = useState(null);
-
-  // Simulate an API call using useEffect
-  useEffect(() => {
-    setTimeout(() => {
-      const fakeRecipeData = {
-        name: "Classic Chocolate Chip Cookies",
-        image: "https://example.com/chocolatechipcookies.jpg",
-        description:
-          "These classic chocolate chip cookies are crispy on the outside and chewy on the inside.",
-        cookingMethod: "Bake",
-        ingredients: [
-          "1 cup butter, softened",
-          "1 cup white sugar",
-          "1 cup packed brown sugar",
-          "2 eggs",
-          "1 tsp vanilla extract",
-          "2 cups all-purpose flour",
-          "1 tsp baking soda",
-          "1/2 tsp salt",
-          "2 cups semisweet chocolate chips",
-        ],
-        instructions:
-          "Preheat the oven to 350°F (175°C). In a large bowl, cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve the baking soda in hot water, and add to the batter along with salt. Stir in flour and chocolate chips. Drop by large spoonfuls onto ungreased baking sheets. Bake for about 10 minutes, or until edges are nicely browned.",
-        nutrition: {
-          calories: "300 calories",
-          fatContent: "15 grams fat",
-        },
-        prepTime: "PT20M",
-        cookTime: "PT10M",
-        recipeYield: "24 cookies",
-      };
-
-      setRecipeData(fakeRecipeData);
-
-      // Reinitialize the Instacart widget after the recipe data is loaded
-      if (window.instacart) {
-        window.instacart.widgets.init();
-      } else {
-        const instacartScript = document.createElement("script");
-        instacartScript.src = "https://widgets.instacart.com/widget-bundle-v2.js";
-        instacartScript.async = true;
-        instacartScript.onload = () => window.instacart.widgets.init();
-        document.body.appendChild(instacartScript);
-      }
-    }, 1500); // Simulate a delay of 1.5 seconds for the fake API call
-  }, []);
-
+export default function Home({ recipeData }) {
   return (
     <>
       <Head>
@@ -183,4 +134,42 @@ export default function Home() {
       />
     </>
   );
+}
+
+// This function runs on the server and provides the props to the component
+export async function getServerSideProps() {
+  // Simulating an API call with a fake recipe data object
+  const fakeRecipeData = {
+    name: "Classic Chocolate Chip Cookies",
+    image: "https://example.com/chocolatechipcookies.jpg",
+    description:
+      "These classic chocolate chip cookies are crispy on the outside and chewy on the inside.",
+    cookingMethod: "Bake",
+    ingredients: [
+      "1 cup butter, softened",
+      "1 cup white sugar",
+      "1 cup packed brown sugar",
+      "2 eggs",
+      "1 tsp vanilla extract",
+      "2 cups all-purpose flour",
+      "1 tsp baking soda",
+      "1/2 tsp salt",
+      "2 cups semisweet chocolate chips",
+    ],
+    instructions:
+      "Preheat the oven to 350°F (175°C). In a large bowl, cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve the baking soda in hot water, and add to the batter along with salt. Stir in flour and chocolate chips. Drop by large spoonfuls onto ungreased baking sheets. Bake for about 10 minutes, or until edges are nicely browned.",
+    nutrition: {
+      calories: "300 calories",
+      fatContent: "15 grams fat",
+    },
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    recipeYield: "24 cookies",
+  };
+
+  return {
+    props: {
+      recipeData: fakeRecipeData, // Pass the recipe data to the page component as props
+    },
+  };
 }
