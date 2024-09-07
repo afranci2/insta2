@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Image from "next/image"; // Importing next/image
+import Image from "next/image"; 
 import {
   Box,
   Heading,
@@ -14,24 +14,23 @@ import {
   HStack,
   Divider,
   SimpleGrid,
-  Badge,
 } from "@chakra-ui/react";
 
 export default function RecipePage() {
   const [recipeData, setRecipeData] = useState(null);
 
   useEffect(() => {
+    // Simulate API call to load recipe data
     setTimeout(() => {
       const fakeRecipeData = {
-        name: "Mom&#39;s World Famous Banana Bread",
+        name: "Mom's World Famous Banana Bread",
         image: "https://example.com/bananabread.jpg",
-        description:
-          "This classic banana bread recipe comes from my mom -- the walnuts add a nice texture and flavor to the banana bread.",
+        description: "This classic banana bread recipe comes from my mom.",
         recipeCategory: "Dessert",
         recipeCuisine: "American",
-        cookTime: "PT1H", // 1 hour
-        prepTime: "PT15M", // 15 minutes
-        totalTime: "PT1H15M", // 1 hour 15 minutes
+        cookTime: "PT1H",
+        prepTime: "PT15M",
+        totalTime: "PT1H15M",
         recipeYield: "1 loaf",
         ingredients: [
           "3 or 4 ripe bananas, smashed",
@@ -62,12 +61,19 @@ export default function RecipePage() {
 
       setRecipeData(fakeRecipeData);
     }, 1500);
+
+    // Manually initialize Instacart script when DOM is fully interactive
+    const instacartScript = document.createElement("script");
+    instacartScript.src = "https://widgets.instacart.com/widget-bundle-v2.js";
+    instacartScript.async = true;
+    instacartScript.dataset.source_origin = "affiliate_hub";
+    document.body.appendChild(instacartScript);
   }, []);
 
   return (
     <>
       <Head>
-        <title>Mom&#39;s World Famous Banana Bread</title>
+        <title>Mom's World Famous Banana Bread</title>
         {recipeData && (
           <script
             type="application/ld+json"
@@ -192,13 +198,6 @@ export default function RecipePage() {
             </Flex>
           </>
         )}
-
-        <Script
-          id="instacart-widget"
-          strategy="afterInteractive"
-          src="https://widgets.instacart.com/widget-bundle-v2.js"
-          async
-        />
       </main>
     </>
   );
